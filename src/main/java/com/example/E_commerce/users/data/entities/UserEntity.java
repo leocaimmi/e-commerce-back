@@ -1,5 +1,6 @@
 package com.example.E_commerce.users.data.entities;
 
+import com.example.E_commerce.configs.auditable.AuditableEntity;
 import com.example.E_commerce.configs.security.commons.data.entities.CredentialEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class UserEntity extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
