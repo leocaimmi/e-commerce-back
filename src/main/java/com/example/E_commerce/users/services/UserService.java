@@ -31,7 +31,14 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public UserResponseDTO getUserByEmail(String email) {
+    /**
+     * Retrieves the user details of the authenticated user.
+     * @return UserResponseDTO containing the user's details.
+     */
+    public UserResponseDTO getUserByEmail() {
+
+        // 1. Get the authenticated user's email
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
 
         return  userMapper.toResponse(credentialRepository.findByUsername(email)
                 .orElseThrow(()-> new EntityNotFoundException("User "+ email+" not found")));
